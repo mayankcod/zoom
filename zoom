@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Zoom Meeting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .zoom-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #0e71eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #095ec2;
+    }
+  </style>
+</head>
+<body>
+  <div class="zoom-form">
+    <h2>Join Zoom Meeting</h2>
+    <input type="text" id="meetingId" placeholder="Meeting ID" required />
+    <input type="text" id="passcode" placeholder="Passcode (optional)" />
+    <button onclick="joinZoom()">Join Meeting</button>
+  </div>
+
+  <script>
+    function joinZoom() {
+      const meetingId = document.getElementById("meetingId").value.trim();
+      const passcode = document.getElementById("passcode").value.trim();
+      if (!meetingId) {
+        alert("Please enter a Meeting ID.");
+        return;
+      }
+      let url = `https://zoom.us/j/${meetingId}`;
+      if (passcode) {
+        url += `?pwd=${encodeURIComponent(passcode)}`;
+      }
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
